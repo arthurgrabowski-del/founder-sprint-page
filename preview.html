@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Sprint — Style-Preview v2 | NXT YOU</title>
+  <meta name="description" content="Preview: Founder Sprint Landingpage im v2v-funnel Style (Schwarz/Weiß/Steel, kein Orange)." />
+  <meta name="theme-color" content="#000000" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nxt: {
+              night:    '#000000',
+              ink:      '#080810',
+              card:     '#0D0D18',
+              border:   '#1C1C2B',
+              text:     '#FFFFFF',
+              muted:    '#8A8FA3',
+              steel:    '#879CC4',
+              'steel-dim': '#3A4258',
+              contrast: '#07071A',
+            },
+          },
+          fontFamily: { sans: ['Inter','system-ui','sans-serif'] },
+          animation: { 'marquee': 'marquee 40s linear infinite' },
+          keyframes: {
+            marquee: { '0%':{transform:'translateX(0)'}, '100%':{transform:'translateX(-50%)'} },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Alpine (CDN) -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    html, body { font-family: 'Inter', system-ui, sans-serif; }
+    body { background: #000; color: #fff; }
+
+    .hero-vignette {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(135,156,196,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(26,26,48,0.8) 0%, transparent 60%),
+        linear-gradient(180deg, #000 0%, #07070E 100%);
+    }
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 35%, transparent 75%);
+    }
+
+    /* Reusable primitives */
+    .chip-eyebrow {
+      display:inline-flex; align-items:center; gap:.375rem;
+      padding: .35rem .7rem; border-radius: 999px;
+      font-size: .7rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(58,66,88,.4);
+      color: #879CC4;
+      border: 1px solid rgba(135,156,196,.22);
+    }
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding: .85rem 1.4rem; border-radius: 999px;
+      background: #fff; color: #07071A;
+      font-weight: 600; font-size: .95rem;
+      transition: all .2s ease;
+    }
+    .btn-primary:hover { background: #E2E5ED; transform: translateY(-1px); }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding: .85rem 1.4rem; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.15); color: #fff;
+      font-weight: 600; font-size: .95rem;
+      transition: all .2s ease;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.05); }
+    .btn-tag {
+      display:inline-flex; align-items:center; gap:.35rem;
+      padding: .45rem .8rem; border-radius: 16px;
+      background: #fff; color: #07071A;
+      font-weight: 600; font-size: .8rem;
+      transition: all .2s ease;
+    }
+    .card-dark {
+      background: #0D0D18;
+      border: 1px solid #1C1C2B;
+      border-radius: 24px;
+    }
+    /* Steel highlight behind words in headings (v2v signature) */
+    .hl-steel {
+      display:inline-block;
+      background: #3A4258;
+      color: #fff;
+      padding: 0 .35em;
+      border-radius: 10px;
+      line-height: 1.15;
+    }
+
+    .faq-caret { transition: transform .25s ease; }
+    [aria-expanded="true"] .faq-caret { transform: rotate(45deg); }
+
+    /* marquee track */
+    .marquee-track { display:flex; gap: 3rem; width: max-content; animation: marquee 40s linear infinite; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+<!-- Preview banner -->
+<div class="fixed top-0 left-0 right-0 z-[60] bg-nxt-steel-dim/80 backdrop-blur border-b border-nxt-steel/30 text-xs py-2 px-4 text-center text-white">
+  <strong>PREVIEW v2 · v2v-funnel Style (Schwarz/Weiß/Steel)</strong> ·
+  <a href="/founder-sprint-page/" class="underline hover:text-nxt-steel">← zurück zur aktuellen Version</a>
+</div>
+
+<!-- §1 · STICKY NAV -->
+<header
+  x-data="{ scrolled:false }"
+  @scroll.window="scrolled = (window.scrollY > 40)"
+  :class="scrolled ? 'bg-nxt-ink/85 backdrop-blur-md border-b border-nxt-border' : 'bg-transparent'"
+  class="fixed inset-x-0 top-8 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-3 text-white">
+      <span class="font-black tracking-tight text-lg">NXT YOU</span>
+      <span class="hidden sm:inline text-white/30 font-normal">·</span>
+      <span class="hidden sm:inline text-white/80 font-medium text-sm tracking-wide">Founder Sprint</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-nxt-muted">
+      <a href="#vorteile" class="hover:text-white transition">Vorteile</a>
+      <a href="#ablauf"    class="hover:text-white transition">Ablauf</a>
+      <a href="#prototypen" class="hover:text-white transition">Prototypen</a>
+      <a href="#team"      class="hover:text-white transition">Team</a>
+      <a href="#faq"       class="hover:text-white transition">FAQ</a>
+    </nav>
+    <a href="#cta" class="btn-primary text-sm !py-2 !px-4">Strategiegespräch <span aria-hidden>→</span></a>
+  </div>
+</header>
+
+<!-- §2 · HERO -->
+<section id="top" class="relative overflow-hidden hero-vignette pt-40 pb-28">
+  <div class="absolute inset-0 hero-grid pointer-events-none"></div>
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <div>
+      <span class="chip-eyebrow mb-6">NXT YOU · Founder Sprint</span>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mt-4">
+        Für Gründer, die in <span class="hl-steel">21 Tagen</span> pitch-ready sein wollen — ohne programmieren zu können.
+      </h1>
+      <p class="mt-7 text-lg text-nxt-muted max-w-xl leading-relaxed">
+        Wir bauen deinen klickbaren Prototypen, deine Waitlist-Landingpage und dein Pitch-Deck. Für
+        <span class="text-white font-semibold">€2.999 fix</span>. Bevor du einen einzigen Entwickler bezahlst.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href="#cta" class="btn-primary">Kostenloses Strategiegespräch <span aria-hidden>→</span></a>
+        <a href="#ablauf" class="btn-ghost">Wie es funktioniert <span aria-hidden>↓</span></a>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-0 border-y border-nxt-border py-5">
+        <div class="px-2 border-r border-nxt-border last:border-r-0">
+          <div class="text-2xl font-black text-white">50+</div>
+          <div class="text-xs text-nxt-muted uppercase tracking-wider mt-1">Projekte</div>
+        </div>
+        <div class="px-2 border-r border-nxt-border last:border-r-0">
+          <div class="text-2xl font-black text-white">250+</div>
+          <div class="text-xs text-nxt-muted uppercase tracking-wider mt-1">Partner-Projekte</div>
+        </div>
+        <div class="px-2 border-r border-nxt-border last:border-r-0">
+          <div class="text-2xl font-black text-white">10.000+</div>
+          <div class="text-xs text-nxt-muted uppercase tracking-wider mt-1">Aktive User</div>
+        </div>
+        <div class="px-2">
+          <div class="text-2xl font-black text-white">4.8★</div>
+          <div class="text-xs text-nxt-muted uppercase tracking-wider mt-1">Kunden-Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero visual: video placeholder -->
+    <div class="relative">
+      <div class="card-dark aspect-[4/3] relative overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-br from-nxt-steel-dim/30 via-transparent to-black/60"></div>
+        <button class="relative z-10 w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl hover:scale-105 transition">
+          <svg class="w-6 h-6 text-nxt-contrast ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <div class="absolute bottom-4 left-4 text-xs text-nxt-muted">VSL · 8 min · Clemens Kauschke</div>
+      </div>
+      <!-- Floating mini-card -->
+      <div class="card-dark absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 px-4 py-3">
+        <div class="w-2 h-2 rounded-full bg-nxt-steel animate-pulse"></div>
+        <div>
+          <div class="text-xs text-nxt-muted uppercase tracking-wider">Live</div>
+          <div class="text-sm text-white font-semibold">50+ Prototypen ausgeliefert</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §3 · BRAND BAR / MARQUEE -->
+<section class="border-y border-nxt-border bg-nxt-ink py-8 overflow-hidden">
+  <div class="marquee-track opacity-60">
+    <template x-data x-for="i in 2">
+      <div class="flex items-center gap-12 text-nxt-muted font-semibold text-sm tracking-wide uppercase px-6">
+        <span>WHU</span><span>·</span><span>KTM</span><span>·</span><span>Adidas</span><span>·</span>
+        <span>Laureus</span><span>·</span><span>Senat der Wirtschaft</span><span>·</span>
+        <span>Forbes</span><span>·</span><span>Business Punk</span><span>·</span>
+        <span>BMBF</span><span>·</span><span>Awwwards</span><span>·</span>
+        <span>German Web Awards 2024</span>
+      </div>
+    </template>
+  </div>
+</section>
+
+<!-- §4 · PAIN -->
+<section id="vorteile" class="bg-nxt-night py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip-eyebrow mb-5">01 · Pain</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mt-5">
+        Warum 9 von 10 Gründern zwischen <span class="hl-steel">€30–75k</span> verbrennen
+      </h2>
+      <p class="mt-5 text-lg text-nxt-muted leading-relaxed">
+        Wir haben in den letzten Jahren zugesehen, wie First-Time Gründer zwischen 30.000 und 75.000 Euro
+        verbrannt haben, bevor sie gemerkt haben: Sie haben das Falsche gebaut.
+      </p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-5">
+      <!-- Pain 1 -->
+      <div class="card-dark p-8">
+        <div class="w-10 h-10 rounded-xl bg-nxt-steel-dim/50 flex items-center justify-center mb-5 border border-nxt-steel/20">
+          <svg class="w-5 h-5 text-nxt-steel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white">18 Monate Entwicklung ins Nichts</h3>
+        <p class="mt-3 text-nxt-muted leading-relaxed">Sie bauten, bevor jemand das Produkt wollte.</p>
+      </div>
+      <!-- Pain 2 -->
+      <div class="card-dark p-8">
+        <div class="w-10 h-10 rounded-xl bg-nxt-steel-dim/50 flex items-center justify-center mb-5 border border-nxt-steel/20">
+          <svg class="w-5 h-5 text-nxt-steel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-6a2 2 0 012-2h4V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2H9"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white">PowerPoint statt Produkt</h3>
+        <p class="mt-3 text-nxt-muted leading-relaxed">Investoren kaufen keine Folien. Sie kaufen, was sie anfassen können.</p>
+      </div>
+      <!-- Pain 3 -->
+      <div class="card-dark p-8">
+        <div class="w-10 h-10 rounded-xl bg-nxt-steel-dim/50 flex items-center justify-center mb-5 border border-nxt-steel/20">
+          <svg class="w-5 h-5 text-nxt-steel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white">Dienst-nach-Vorschrift-Agentur</h3>
+        <p class="mt-3 text-nxt-muted leading-relaxed">Du wolltest nicht, was du bestellt hast. Du wolltest das, was funktioniert.</p>
+      </div>
+      <!-- Pain 4 -->
+      <div class="card-dark p-8">
+        <div class="w-10 h-10 rounded-xl bg-nxt-steel-dim/50 flex items-center justify-center mb-5 border border-nxt-steel/20">
+          <svg class="w-5 h-5 text-nxt-steel" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-white">Der „richtige Moment" kommt nie</h3>
+        <p class="mt-3 text-nxt-muted leading-relaxed">Der Unterschied zwischen Idee und Startup ist Geschwindigkeit.</p>
+      </div>
+    </div>
+
+    <!-- Pull quote -->
+    <div class="mt-14 border-l-2 border-nxt-steel pl-6 max-w-3xl">
+      <p class="text-xl md:text-2xl text-white font-semibold leading-snug">
+        „Die Wahrheit: Aus einer Idee ein Software-Business zu machen ist hart.
+        Aber es gibt eine Reihenfolge, die Gründer reich macht — nicht pleite."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- §6 · VALUE STACK -->
+<section class="bg-nxt-ink py-24 md:py-32 border-t border-nxt-border">
+  <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="chip-eyebrow mb-5">02 · Deliverables</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mt-5">
+        Was du konkret <span class="hl-steel">mit nach Hause</span> nimmst
+      </h2>
+      <p class="mt-5 text-lg text-nxt-muted">
+        11 Deliverables. Einzelwert €21.800. Regulärer Preis €9.500. Dein Preis: €2.999.
+      </p>
+    </div>
+
+    <div class="card-dark mt-14 overflow-hidden">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b border-nxt-border text-xs uppercase tracking-wider text-nxt-muted">
+            <th class="px-6 py-4 w-12">#</th>
+            <th class="px-6 py-4">Deliverable</th>
+            <th class="px-6 py-4 text-right">Einzelwert</th>
+          </tr>
+        </thead>
+        <tbody class="text-white">
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">1</td><td class="px-6 py-4">Discovery Workshops (Produkt · Design · Tech)</td><td class="px-6 py-4 text-right font-semibold">€2.400</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">2</td><td class="px-6 py-4">Vollständiges PRD (PDF, 20–50 Seiten)</td><td class="px-6 py-4 text-right font-semibold">€3.500</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">3</td><td class="px-6 py-4">Brand Guidelines (PDF)</td><td class="px-6 py-4 text-right font-semibold">€1.200</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">4</td><td class="px-6 py-4">Komplettes Screendesign (Figma, übergabe-ready)</td><td class="px-6 py-4 text-right font-semibold">€4.800</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">5</td><td class="px-6 py-4">Clickable Prototype on Steroids (Live-Link)</td><td class="px-6 py-4 text-right font-semibold">€3.900</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">6</td><td class="px-6 py-4">Pitch-Deck-Template (PDF + Figma)</td><td class="px-6 py-4 text-right font-semibold">€1.500</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">7</td><td class="px-6 py-4">Tweet-Sized Landingpage inkl. Waitlist</td><td class="px-6 py-4 text-right font-semibold">€1.800</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">8</td><td class="px-6 py-4">ICP-Doc + Sales-Playbook</td><td class="px-6 py-4 text-right font-semibold">€900</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">9</td><td class="px-6 py-4">Meilensteinplan für Build</td><td class="px-6 py-4 text-right font-semibold">€600</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">10</td><td class="px-6 py-4">Recorded Content Library</td><td class="px-6 py-4 text-right font-semibold">€450</td></tr>
+          <tr class="border-b border-nxt-border/60"><td class="px-6 py-4 text-nxt-muted">11</td><td class="px-6 py-4">Post-Launch Check-Ins (30/60/90 Tage)</td><td class="px-6 py-4 text-right font-semibold">€750</td></tr>
+          <tr class="bg-nxt-steel-dim/30 border-t border-nxt-steel/20"><td></td><td class="px-6 py-4 font-bold uppercase tracking-wide text-sm">Gesamtwert</td><td class="px-6 py-4 text-right font-black text-lg">€21.800</td></tr>
+          <tr class="text-nxt-muted"><td></td><td class="px-6 py-3 line-through">Normaler Preis</td><td class="px-6 py-3 text-right line-through">€9.500</td></tr>
+        </tbody>
+      </table>
+      <!-- Final price block -->
+      <div class="p-10 text-center border-t border-nxt-border bg-black">
+        <div class="text-xs uppercase tracking-widest text-nxt-muted mb-3">Dein Preis · Founder Sprint Fix</div>
+        <div class="text-7xl md:text-8xl font-black tracking-tight text-white">€2.999</div>
+        <a href="#cta" class="btn-primary mt-8">Strategiegespräch sichern <span aria-hidden>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §10 · CASESTUDIES (teaser) -->
+<section id="prototypen" class="bg-nxt-night py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip-eyebrow mb-5">03 · Proof</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mt-5">
+        So fühlt sich ein Prototyp an, der <span class="hl-steel">überzeugt</span>.
+      </h2>
+    </div>
+    <div class="mt-14 grid md:grid-cols-3 gap-5">
+      <!-- Prototype Card 1 -->
+      <div class="card-dark overflow-hidden group cursor-pointer">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-steel-dim/40 via-nxt-card to-black relative flex items-center justify-center">
+          <span class="text-3xl font-black text-white/90 tracking-tight">Vetain</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white">Vetain</h3>
+          <p class="mt-2 text-sm text-nxt-muted leading-relaxed">Investor in Woche 3 überzeugt — Seed-Tranche gesichert.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <span class="text-xs text-nxt-muted uppercase tracking-wider">Live-Prototyp</span>
+            <a href="#" class="btn-tag">Casestudy ansehen →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Prototype Card 2 -->
+      <div class="card-dark overflow-hidden group cursor-pointer">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-steel-dim/40 via-nxt-card to-black relative flex items-center justify-center">
+          <span class="text-3xl font-black text-white/90 tracking-tight">Soulmates</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white">Soulmates</h3>
+          <p class="mt-2 text-sm text-nxt-muted leading-relaxed">1.400 Waitlist-Signups vor dem ersten Code-Commit.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <span class="text-xs text-nxt-muted uppercase tracking-wider">Live-Prototyp</span>
+            <a href="#" class="btn-tag">Casestudy ansehen →</a>
+          </div>
+        </div>
+      </div>
+      <!-- Prototype Card 3 -->
+      <div class="card-dark overflow-hidden group cursor-pointer">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-steel-dim/40 via-nxt-card to-black relative flex items-center justify-center">
+          <span class="text-3xl font-black text-white/90 tracking-tight">PILLO</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white">PILLO</h3>
+          <p class="mt-2 text-sm text-nxt-muted leading-relaxed">Erste Pilotkunden vor Launch — €24k MRR committed.</p>
+          <div class="mt-5 flex items-center justify-between">
+            <span class="text-xs text-nxt-muted uppercase tracking-wider">Live-Prototyp</span>
+            <a href="#" class="btn-tag">Casestudy ansehen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §15 · FINAL CTA -->
+<section id="cta" class="bg-nxt-night py-28 md:py-36 border-t border-nxt-border">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+    <span class="chip-eyebrow mb-5">04 · Nächster Schritt</span>
+    <h2 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.05] mt-6">
+      Buch dir jetzt dein <span class="hl-steel">kostenloses</span> Strategie-Gespräch.
+    </h2>
+    <p class="mt-6 text-lg text-nxt-muted max-w-2xl mx-auto">
+      Kostenlos. Unverbindlich. Der produktivste Call, den du diese Woche haben wirst.
+    </p>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+      <a href="#" class="btn-primary text-base !py-4 !px-7">Kostenloses Strategiegespräch <span aria-hidden>→</span></a>
+    </div>
+    <p class="mt-6 text-sm text-nxt-muted">
+      Wenn wir gemeinsam merken, es passt nicht — sagen wir dir das ehrlich.
+    </p>
+  </div>
+</section>
+
+<!-- Footer (minimal) -->
+<footer class="bg-nxt-ink border-t border-nxt-border py-12">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-nxt-muted">
+    <div class="font-black text-white tracking-tight">NXT YOU</div>
+    <div>© NXT YOU GmbH · Berlin & München</div>
+    <div class="flex gap-6">
+      <a href="#" class="hover:text-white">Impressum</a>
+      <a href="#" class="hover:text-white">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
