@@ -1,0 +1,1248 @@
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Founder Sprint — Pitch-Ready in 21 Tagen | NXT YOU</title>
+  <meta name="description" content="Clickable Prototype, Waitlist-Landingpage und Pitch-Deck in 21 Tagen. Für €2.999 fix. Bevor du einen einzigen Entwickler bezahlst." />
+  <meta name="theme-color" content="#0E3B2E" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Founder Sprint — Pitch-Ready in 21 Tagen" />
+  <meta property="og:description" content="Clickable Prototype, Waitlist und Pitch-Deck in 21 Tagen. €2.999 fix." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nxt: {
+              green:    '#0E3B2E',
+              'green-2':'#17503F',
+              deep:     '#0B1E18',
+              cream:    '#F5F2EC',
+              orange:   '#FF6B1A',
+              'orange-2':'#FF824D',
+              muted:    '#C9D4CE',
+              line:     '#1C4538',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter','system-ui','sans-serif'],
+          },
+          boxShadow: {
+            'nxt': '0 30px 80px -20px rgba(0,0,0,0.45)',
+          },
+          animation: {
+            'marquee': 'marquee 40s linear infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%':   { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Alpine (CDN) -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    html, body { font-family: 'Inter', system-ui, sans-serif; }
+    .gradient-hero {
+      background:
+        radial-gradient(ellipse at top right, rgba(255,107,26,0.18), transparent 60%),
+        radial-gradient(ellipse at bottom left, rgba(23,80,63,0.8), transparent 55%),
+        linear-gradient(180deg,#0B1E18 0%,#0E3B2E 100%);
+    }
+    .gradient-cream-to-green {
+      background: linear-gradient(180deg,#F5F2EC 0%,#F5F2EC 60%,#0E3B2E 60%,#0E3B2E 100%);
+    }
+    .hero-grid-overlay {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .ring-nxt { box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset; }
+    .chip {
+      display: inline-flex; align-items: center; gap: .375rem;
+      padding: .3rem .6rem; border-radius: 999px;
+      font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    /* FAQ accordion caret */
+    .faq-caret { transition: transform .25s ease; }
+    [aria-expanded="true"] .faq-caret { transform: rotate(45deg); }
+  </style>
+</head>
+
+<body class="bg-nxt-cream text-nxt-deep antialiased">
+
+<!-- ============================================= -->
+<!-- §1 · STICKY NAV                                -->
+<!-- ============================================= -->
+<header
+  x-data="{ scrolled:false }"
+  @scroll.window="scrolled = (window.scrollY > 40)"
+  :class="scrolled ? 'bg-nxt-deep/90 backdrop-blur-md border-b border-nxt-line' : 'bg-transparent'"
+  class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 text-white font-black tracking-tight text-lg">
+      <span class="inline-flex h-8 w-8 rounded-full bg-nxt-orange items-center justify-center text-nxt-deep text-sm font-black">NY</span>
+      <span>NXT YOU</span>
+      <span class="hidden sm:inline text-white/40 font-normal">×</span>
+      <span class="hidden sm:inline text-white/80 font-semibold">Founder Sprint</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-white/80">
+      <a href="#vorteile" class="hover:text-white">Vorteile</a>
+      <a href="#ablauf" class="hover:text-white">Ablauf</a>
+      <a href="#prototypen" class="hover:text-white">Prototypen</a>
+      <a href="#team" class="hover:text-white">Team</a>
+      <a href="#faq" class="hover:text-white">FAQ</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <a href="tel:+4917680649500" class="hidden md:inline text-sm text-white/70 hover:text-white">+49 176 80649500</a>
+      <a href="/app-kontakt"
+         class="inline-flex items-center gap-2 rounded-full bg-nxt-orange hover:bg-nxt-orange-2 px-4 py-2 text-sm font-semibold text-nxt-deep transition">
+        Strategiegespräch
+        <span aria-hidden>→</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================= -->
+<!-- §2 · HERO                                      -->
+<!-- ============================================= -->
+<section id="top" class="relative gradient-hero pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+  <div class="absolute inset-0 hero-grid-overlay opacity-40 pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+    <!-- Copy -->
+    <div class="lg:col-span-7 text-white">
+      <span class="chip bg-nxt-orange/15 text-nxt-orange ring-1 ring-nxt-orange/30">
+        NXT YOU × Founder Sprint
+      </span>
+      <h1 class="mt-6 text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
+        Für Gründer, die in <span class="text-nxt-orange">21 Tagen</span><br class="hidden md:block" />
+        pitch-ready sein wollen — ohne programmieren zu können.
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+        Wir bauen deinen klickbaren Prototypen, deine Waitlist-Landingpage und dein Pitch-Deck. Für <strong class="text-white">€2.999 fix</strong>.
+        Bevor du einen einzigen Entwickler bezahlst.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4">
+        <a href="/app-kontakt"
+           class="inline-flex items-center justify-center gap-2 rounded-full bg-nxt-orange hover:bg-nxt-orange-2 px-7 py-4 text-base font-bold text-nxt-deep shadow-nxt transition">
+          Kostenloses Strategiegespräch
+          <span aria-hidden>→</span>
+        </a>
+        <a href="#ablauf"
+           class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 hover:border-white/60 px-7 py-4 text-base font-semibold text-white transition">
+          Wie es funktioniert
+          <span aria-hidden>↓</span>
+        </a>
+      </div>
+
+      <!-- Stats strip -->
+      <dl class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl">
+        <div>
+          <dt class="text-white/60 text-xs uppercase tracking-wider font-semibold">Projekte begleitet</dt>
+          <dd class="mt-1 text-2xl md:text-3xl font-black text-white">50+</dd>
+        </div>
+        <div>
+          <dt class="text-white/60 text-xs uppercase tracking-wider font-semibold">Partner-Projekte</dt>
+          <dd class="mt-1 text-2xl md:text-3xl font-black text-white">250+</dd>
+        </div>
+        <div>
+          <dt class="text-white/60 text-xs uppercase tracking-wider font-semibold">Aktive User</dt>
+          <dd class="mt-1 text-2xl md:text-3xl font-black text-white">10.000+</dd>
+        </div>
+        <div>
+          <dt class="text-white/60 text-xs uppercase tracking-wider font-semibold">Rating</dt>
+          <dd class="mt-1 text-2xl md:text-3xl font-black text-white">4.8<span class="text-nxt-orange">★</span></dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Hero visual: video thumb + prototype mocks -->
+    <div class="lg:col-span-5">
+      <div class="relative">
+        <!-- Prototype mocks (decorative) -->
+        <div class="absolute -top-6 -left-8 hidden md:block w-36 h-72 rounded-[2rem] bg-gradient-to-br from-nxt-green-2 to-nxt-green shadow-nxt ring-1 ring-white/10 rotate-[-6deg] overflow-hidden">
+          <div class="p-3 text-[10px] text-white/70">PILLO</div>
+          <div class="mx-3 h-24 rounded-xl bg-white/10"></div>
+          <div class="mx-3 mt-2 h-3 rounded bg-white/20 w-3/4"></div>
+          <div class="mx-3 mt-1 h-3 rounded bg-white/10 w-1/2"></div>
+        </div>
+        <div class="absolute -bottom-8 -right-6 hidden md:block w-36 h-72 rounded-[2rem] bg-gradient-to-br from-nxt-orange to-nxt-orange-2 shadow-nxt ring-1 ring-white/10 rotate-[8deg] overflow-hidden">
+          <div class="p-3 text-[10px] text-white/80">Vetain</div>
+          <div class="mx-3 h-24 rounded-xl bg-white/20"></div>
+          <div class="mx-3 mt-2 h-3 rounded bg-white/30 w-3/4"></div>
+          <div class="mx-3 mt-1 h-3 rounded bg-white/20 w-1/2"></div>
+        </div>
+
+        <!-- Video thumb -->
+        <a href="#video" class="relative block rounded-3xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-nxt-green-2 to-nxt-deep shadow-nxt ring-1 ring-white/10 group">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="h-20 w-20 rounded-full bg-nxt-orange flex items-center justify-center group-hover:scale-110 transition-transform shadow-nxt">
+              <svg viewBox="0 0 24 24" class="h-7 w-7 text-nxt-deep fill-current ml-1"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90 text-sm">
+            <span class="font-semibold">VSL · 8 Minuten</span>
+            <span class="chip bg-white/10 text-white ring-1 ring-white/15">Clemens Kauschke</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §3 · BRAND BAR (Marquee)                       -->
+<!-- ============================================= -->
+<section class="bg-nxt-deep py-10 overflow-hidden border-y border-nxt-line">
+  <p class="text-center text-xs uppercase tracking-[0.25em] text-white/50 font-semibold mb-6">
+    Top-Brands &amp; Partner vertrauen auf unser Team
+  </p>
+  <div class="relative">
+    <div class="flex gap-16 animate-marquee whitespace-nowrap text-white/60 text-xl font-black">
+      <!-- First copy -->
+      <span class="mx-8">WHU</span>
+      <span class="mx-8">Adidas</span>
+      <span class="mx-8">KTM</span>
+      <span class="mx-8">Sixt</span>
+      <span class="mx-8">Laureus</span>
+      <span class="mx-8">Senat d. Wirtschaft</span>
+      <span class="mx-8">Forbes</span>
+      <span class="mx-8">Business Punk</span>
+      <span class="mx-8">BMBF</span>
+      <span class="mx-8">Awwwards</span>
+      <span class="mx-8">German Web Awards</span>
+      <span class="mx-8">Universität Hamburg</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="mx-8">WHU</span>
+      <span class="mx-8">Adidas</span>
+      <span class="mx-8">KTM</span>
+      <span class="mx-8">Sixt</span>
+      <span class="mx-8">Laureus</span>
+      <span class="mx-8">Senat d. Wirtschaft</span>
+      <span class="mx-8">Forbes</span>
+      <span class="mx-8">Business Punk</span>
+      <span class="mx-8">BMBF</span>
+      <span class="mx-8">Awwwards</span>
+      <span class="mx-8">German Web Awards</span>
+      <span class="mx-8">Universität Hamburg</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §4 · PAIN — Warum 9 von 10 Gründern verbrennen -->
+<!-- ============================================= -->
+<section id="vorteile" class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">
+        Die unbequeme Wahrheit
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+        Warum 9 von 10 Gründern zwischen <span class="text-nxt-orange">€30.000 und €75.000</span> verbrennen.
+      </h2>
+      <p class="mt-6 text-lg text-nxt-deep/70 leading-relaxed">
+        Wir haben in den letzten Jahren zugesehen, wie First-Time Gründer dreißig-, fünfzig-, manchmal über hunderttausend Euro in die Entwicklung gesteckt haben, bevor sie gemerkt haben: Sie haben das Falsche gebaut. Die Muster wiederholen sich.
+      </p>
+    </div>
+
+    <!-- 4 Pain Cards in 2×2 -->
+    <div class="mt-14 grid md:grid-cols-2 gap-6">
+      <!-- Card 1 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="h-12 w-12 rounded-full bg-nxt-orange/10 flex items-center justify-center text-nxt-orange text-xl font-black">01</div>
+        <h3 class="mt-6 text-xl md:text-2xl font-extrabold text-nxt-deep">18 Monate Entwicklung ins Nichts</h3>
+        <p class="mt-3 text-nxt-deep/70 leading-relaxed">
+          Sie haben das Produkt gebaut, bevor sie wussten, ob es jemand will. Sechsstellige Budgets, fertige App — und ein leerer Launch-Tag.
+        </p>
+      </article>
+      <!-- Card 2 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="h-12 w-12 rounded-full bg-nxt-orange/10 flex items-center justify-center text-nxt-orange text-xl font-black">02</div>
+        <h3 class="mt-6 text-xl md:text-2xl font-extrabold text-nxt-deep">PowerPoint statt Produkt</h3>
+        <p class="mt-3 text-nxt-deep/70 leading-relaxed">
+          Wochen in Pitch-Decks verloren. Investoren hören Theorie jeden Tag. Sie kaufen erst, wenn sie es sehen und anfassen können.
+        </p>
+      </article>
+      <!-- Card 3 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="h-12 w-12 rounded-full bg-nxt-orange/10 flex items-center justify-center text-nxt-orange text-xl font-black">03</div>
+        <h3 class="mt-6 text-xl md:text-2xl font-extrabold text-nxt-deep">Dienst-nach-Vorschrift-Agentur</h3>
+        <p class="mt-3 text-nxt-deep/70 leading-relaxed">
+          Sie sagen, was gebaut werden soll — die Agentur nickt und rechnet Stunden ab. Du wolltest nicht, was du bestellt hast. Du wolltest das, was funktioniert.
+        </p>
+      </article>
+      <!-- Card 4 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="h-12 w-12 rounded-full bg-nxt-orange/10 flex items-center justify-center text-nxt-orange text-xl font-black">04</div>
+        <h3 class="mt-6 text-xl md:text-2xl font-extrabold text-nxt-deep">Der &bdquo;richtige Moment&rdquo; kommt nie</h3>
+        <p class="mt-3 text-nxt-deep/70 leading-relaxed">
+          Monate, manchmal Jahre in Analyse und Recherche. Der Unterschied zwischen Idee und Startup ist nicht die Qualität — es ist die Geschwindigkeit.
+        </p>
+      </article>
+    </div>
+
+    <!-- Pull Quote -->
+    <blockquote class="mt-14 max-w-3xl mx-auto text-center border-l-4 border-nxt-orange pl-6 md:border-l-0 md:pl-0">
+      <p class="text-xl md:text-2xl font-semibold text-nxt-deep leading-relaxed">
+        „Die Wahrheit: Aus einer Idee ein Software-Business zu machen ist hart. Aber es gibt eine Reihenfolge, die Gründer reich macht — nicht pleite."
+      </p>
+      <footer class="mt-4 text-sm font-semibold text-nxt-deep/60 uppercase tracking-wider">
+        — Clemens Kauschke, Gründer NXT YOU
+      </footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §5 · SOLUTION — Was du in 21 Tagen bekommst    -->
+<!-- ============================================= -->
+<section class="bg-nxt-green py-24 md:py-32 text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid-overlay opacity-25 pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Die Lösung · Founder Sprint
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        In 21 Tagen vom Konzept zu <span class="text-nxt-orange">echten Marktsignalen.</span>
+      </h2>
+      <p class="mt-6 text-lg md:text-xl text-white/80 leading-relaxed">
+        Validierter Pitch. Wartende Nutzer. Erste Pilotkunden. Bevor ein Entwickler bezahlt wird.
+      </p>
+    </div>
+
+    <!-- 3 Promise Pillars -->
+    <div class="mt-16 grid md:grid-cols-3 gap-6">
+      <div class="bg-white/5 rounded-3xl p-8 ring-1 ring-white/10 ring-nxt">
+        <div class="text-3xl">🎯</div>
+        <h3 class="mt-4 text-xl font-extrabold">Greifbar statt PowerPoint</h3>
+        <p class="mt-3 text-white/70 leading-relaxed">
+          Ein klickbarer Prototype, den Investoren, Partner und erste Kunden im Browser oder auf dem Handy erleben — nicht nur Folien sehen.
+        </p>
+      </div>
+      <div class="bg-white/5 rounded-3xl p-8 ring-1 ring-white/10 ring-nxt">
+        <div class="text-3xl">💰</div>
+        <h3 class="mt-4 text-xl font-extrabold">€2.999 statt €30k MVP-Risiko</h3>
+        <p class="mt-3 text-white/70 leading-relaxed">
+          Ein Fixpreis. Kein Blind-Commit auf sechsstellige Entwicklung. Du weißt am Tag 21 exakt, ob sich der Bau lohnt.
+        </p>
+      </div>
+      <div class="bg-white/5 rounded-3xl p-8 ring-1 ring-white/10 ring-nxt">
+        <div class="text-3xl">⚡</div>
+        <h3 class="mt-4 text-xl font-extrabold">21 Tage statt 6 Monate</h3>
+        <p class="mt-3 text-white/70 leading-relaxed">
+          AI-Agenten laufen 24/7 neben unserem Team. Was klassische Agenturen in sechs Monaten liefern, liefern wir in drei Wochen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §6 · HORMOZI VALUE STACK                       -->
+<!-- ============================================= -->
+<section class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">
+        Was du konkret bekommst
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+        11 Deliverables. Ein Fixpreis. Keine Überraschungen.
+      </h2>
+      <p class="mt-4 text-lg text-nxt-deep/70 leading-relaxed">
+        Jede Komponente aus dem Founder Sprint, einzeln bewertet — und was du dafür bezahlst.
+      </p>
+    </div>
+
+    <div class="mt-12 rounded-3xl bg-white border border-nxt-deep/5 shadow-nxt overflow-hidden">
+      <ul class="divide-y divide-nxt-deep/5">
+        <!-- Row template -->
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">01</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Discovery Workshops</p>
+              <p class="text-sm text-nxt-deep/60">Produkt · Design · Tech — an Tag 1</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€2.400</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">02</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Vollständiges PRD</p>
+              <p class="text-sm text-nxt-deep/60">PDF, 20–50 Seiten — dein Produkt-Fundament</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€3.500</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">03</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Brand Guidelines</p>
+              <p class="text-sm text-nxt-deep/60">PDF — Logo, Farben, Typo, Anwendung</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€1.200</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">04</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Komplettes Screendesign</p>
+              <p class="text-sm text-nxt-deep/60">Figma, übergabe-ready für die MVP-Entwicklung</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€4.800</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6 bg-nxt-orange/5">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-orange text-white text-sm font-black flex items-center justify-center">05</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Clickable Prototype on Steroids</p>
+              <p class="text-sm text-nxt-deep/60">Live-Link — kein Figma, echter Produkt-Feel</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€3.900</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">06</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Pitch-Deck-Template</p>
+              <p class="text-sm text-nxt-deep/60">PDF + Figma — für jeden VC-Termin</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€1.500</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">07</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Tweet-Sized Landingpage</p>
+              <p class="text-sm text-nxt-deep/60">inkl. Waitlist — beweist, dass der Markt will</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€1.800</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">08</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">ICP-Doc + Sales-Playbook</p>
+              <p class="text-sm text-nxt-deep/60">Für deine ersten Pilotkunden-Gespräche</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€900</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">09</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Meilensteinplan für Build</p>
+              <p class="text-sm text-nxt-deep/60">Klarer Kosten- und Zeitrahmen für die MVP-Phase</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€600</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">10</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Recorded Content Library</p>
+              <p class="text-sm text-nxt-deep/60">Alle Workshops & Sessions, jederzeit abrufbar</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€450</span>
+        </li>
+        <li class="flex items-center justify-between p-5 md:p-6">
+          <div class="flex items-center gap-4">
+            <span class="h-8 w-8 rounded-full bg-nxt-green/10 text-nxt-green text-sm font-black flex items-center justify-center">11</span>
+            <div>
+              <p class="font-semibold text-nxt-deep">Post-Launch Check-Ins</p>
+              <p class="text-sm text-nxt-deep/60">30 / 60 / 90 Tage — wir bleiben an deiner Seite</p>
+            </div>
+          </div>
+          <span class="font-bold text-nxt-deep">€750</span>
+        </li>
+      </ul>
+
+      <!-- Totals -->
+      <div class="border-t border-nxt-deep/5 bg-nxt-cream/50 p-5 md:p-6 space-y-2">
+        <div class="flex items-center justify-between text-nxt-deep/70">
+          <span>Gesamtwert aller Deliverables</span>
+          <span class="font-bold">€21.800</span>
+        </div>
+        <div class="flex items-center justify-between text-nxt-deep/60">
+          <span>Normaler Preis einzeln</span>
+          <span class="line-through">€9.500</span>
+        </div>
+        <div class="flex items-center justify-between text-nxt-deep bg-nxt-orange/10 rounded-xl p-4 mt-2">
+          <span class="font-black text-lg">Dein Preis · Founder Sprint Fix</span>
+          <span class="font-black text-2xl md:text-3xl text-nxt-orange">€2.999</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="/app-kontakt"
+         class="inline-flex items-center gap-2 rounded-full bg-nxt-green hover:bg-nxt-green-2 px-8 py-4 text-base font-bold text-white shadow-nxt transition">
+        Strategiegespräch sichern
+        <span aria-hidden>→</span>
+      </a>
+      <p class="text-sm text-nxt-deep/60">Kostenlos · unverbindlich · in 24 h beantwortet</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §7 · 4-PHASEN-TIMELINE                         -->
+<!-- ============================================= -->
+<section id="ablauf" class="bg-nxt-deep py-24 md:py-32 text-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Der 4-Phasen-Sprint
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Drei Wochen. Vier Phasen. Ein Team, das dich führt.
+      </h2>
+      <p class="mt-6 text-lg text-white/70 leading-relaxed">
+        Jede Phase hat klar definierte Deliverables. Am Ende weißt du nicht nur, ob dein Produkt funktioniert — du hast es greifbar in der Hand.
+      </p>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-16 grid lg:grid-cols-4 gap-6">
+      <!-- Phase 1 -->
+      <article class="relative bg-nxt-green-2/40 rounded-3xl p-8 ring-1 ring-white/10">
+        <div class="flex items-center justify-between">
+          <span class="h-10 w-10 rounded-full bg-nxt-orange text-nxt-deep font-black flex items-center justify-center">1</span>
+          <span class="chip bg-white/5 text-white/70 ring-1 ring-white/10">Tag 1</span>
+        </div>
+        <h3 class="mt-6 text-xl font-extrabold">Market Fit Workshop</h3>
+        <p class="mt-3 text-white/70 text-sm leading-relaxed">
+          Zielgruppe, Geschäftsmodell, Pricing. Das Fundament für alles, was danach kommt.
+        </p>
+        <ul class="mt-5 space-y-2 text-sm text-white/80">
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> ICP definiert</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Value-Prop geschärft</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Business-Case klar</li>
+        </ul>
+        <span class="mt-6 inline-block chip bg-nxt-orange/10 text-nxt-orange ring-1 ring-nxt-orange/20">
+          AI-enhanced Discovery
+        </span>
+      </article>
+
+      <!-- Phase 2 -->
+      <article class="bg-nxt-green-2/40 rounded-3xl p-8 ring-1 ring-white/10">
+        <div class="flex items-center justify-between">
+          <span class="h-10 w-10 rounded-full bg-nxt-orange text-nxt-deep font-black flex items-center justify-center">2</span>
+          <span class="chip bg-white/5 text-white/70 ring-1 ring-white/10">Woche 1</span>
+        </div>
+        <h3 class="mt-6 text-xl font-extrabold">Product Design</h3>
+        <p class="mt-3 text-white/70 text-sm leading-relaxed">
+          Wir designen die Key-Screens deiner App — professionell, konsistent, im Look, der zu deiner Marke passt.
+        </p>
+        <ul class="mt-5 space-y-2 text-sm text-white/80">
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> User Flows</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Hi-Fi Screens</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Brand-Layer</li>
+        </ul>
+      </article>
+
+      <!-- Phase 3 -->
+      <article class="bg-nxt-green-2/40 rounded-3xl p-8 ring-1 ring-white/10">
+        <div class="flex items-center justify-between">
+          <span class="h-10 w-10 rounded-full bg-nxt-orange text-nxt-deep font-black flex items-center justify-center">3</span>
+          <span class="chip bg-white/5 text-white/70 ring-1 ring-white/10">Woche 2</span>
+        </div>
+        <h3 class="mt-6 text-xl font-extrabold">Clickable Prototype</h3>
+        <p class="mt-3 text-white/70 text-sm leading-relaxed">
+          Ein voll interaktiver Prototype im Browser oder auf dem Handy — als wäre die App schon live.
+        </p>
+        <ul class="mt-5 space-y-2 text-sm text-white/80">
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Live-Link</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Mobile + Desktop</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Pitch-Ready</li>
+        </ul>
+      </article>
+
+      <!-- Phase 4 -->
+      <article class="bg-nxt-green-2/40 rounded-3xl p-8 ring-1 ring-white/10">
+        <div class="flex items-center justify-between">
+          <span class="h-10 w-10 rounded-full bg-nxt-orange text-nxt-deep font-black flex items-center justify-center">4</span>
+          <span class="chip bg-white/5 text-white/70 ring-1 ring-white/10">Woche 3</span>
+        </div>
+        <h3 class="mt-6 text-xl font-extrabold">Go-To-Market Strategy</h3>
+        <p class="mt-3 text-white/70 text-sm leading-relaxed">
+          Landingpage live, Waitlist aktiv, Analytics und Tracking eingerichtet, Pitch-Rehearsal mit uns.
+        </p>
+        <ul class="mt-5 space-y-2 text-sm text-white/80">
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Landing + Waitlist</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Analytics-Stack</li>
+          <li class="flex gap-2"><span class="text-nxt-orange">◆</span> Pitch-Rehearsal</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §8 · 4 LEARNINGS                               -->
+<!-- ============================================= -->
+<section class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">
+        Die Philosophie
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+        Vier Learnings aus über 50 Software-Projekten.
+      </h2>
+      <p class="mt-6 text-lg text-nxt-deep/70 leading-relaxed">
+        Aus den Erfolgen und vor allem aus den teuren Misserfolgen — hier ist, was wir gelernt haben. Und warum der Founder Sprint genau so gebaut ist.
+      </p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-2 gap-6">
+      <!-- Learning 1 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm">
+        <div class="flex items-baseline gap-3 text-nxt-orange">
+          <span class="text-3xl font-black">#1</span>
+          <span class="text-xs uppercase tracking-widest font-semibold text-nxt-deep/50">Learning</span>
+        </div>
+        <h3 class="mt-4 text-2xl font-extrabold text-nxt-deep">Greifbares schlägt PowerPoint.</h3>
+        <p class="mt-4 text-nxt-deep/70 leading-relaxed">
+          Stell dir vor, du willst jemandem ein Auto verkaufen und zeigst nur den Prospekt. Niemand kauft so. Der Interessent will sich reinsetzen, den Motor hören. Dasselbe gilt für deine App-Idee.
+        </p>
+      </article>
+      <!-- Learning 2 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm">
+        <div class="flex items-baseline gap-3 text-nxt-orange">
+          <span class="text-3xl font-black">#2</span>
+          <span class="text-xs uppercase tracking-widest font-semibold text-nxt-deep/50">Learning</span>
+        </div>
+        <h3 class="mt-4 text-2xl font-extrabold text-nxt-deep">Validiere, bevor du Code kaufst.</h3>
+        <p class="mt-4 text-nxt-deep/70 leading-relaxed">
+          90 % der ersten MVPs scheitern nicht am Code, sondern an ungeprüften Annahmen. Eine Landingpage und ein Prototype lehren dich in zwei Wochen mehr als sechs Monate Entwicklung.
+        </p>
+      </article>
+      <!-- Learning 3 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm">
+        <div class="flex items-baseline gap-3 text-nxt-orange">
+          <span class="text-3xl font-black">#3</span>
+          <span class="text-xs uppercase tracking-widest font-semibold text-nxt-deep/50">Learning</span>
+        </div>
+        <h3 class="mt-4 text-2xl font-extrabold text-nxt-deep">Partner statt Programmierer.</h3>
+        <p class="mt-4 text-nxt-deep/70 leading-relaxed">
+          Du brauchst keinen Coder. Du brauchst jemanden, der deine Idee hinterfragt, bevor er sie baut — und dir ehrlich sagt, wenn etwas nicht funktionieren wird.
+        </p>
+      </article>
+      <!-- Learning 4 -->
+      <article class="bg-white rounded-3xl p-8 md:p-10 border border-nxt-deep/5 shadow-sm">
+        <div class="flex items-baseline gap-3 text-nxt-orange">
+          <span class="text-3xl font-black">#4</span>
+          <span class="text-xs uppercase tracking-widest font-semibold text-nxt-deep/50">Learning</span>
+        </div>
+        <h3 class="mt-4 text-2xl font-extrabold text-nxt-deep">Geschwindigkeit schlägt Perfektion.</h3>
+        <p class="mt-4 text-nxt-deep/70 leading-relaxed">
+          In 21 Tagen etwas Greifbares in der Hand zu haben — das ist der Unterschied zwischen „ich will mal gründen" und „ich gründe gerade".
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §9 · CLICKABLE PROTOTYPES                      -->
+<!-- ============================================= -->
+<section id="prototypen" class="bg-nxt-green py-24 md:py-32 text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid-overlay opacity-25 pointer-events-none"></div>
+  <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Proof · Echte Prototypen
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        So fühlt sich ein Prototyp an, der überzeugt.
+      </h2>
+      <p class="mt-6 text-lg text-white/80 leading-relaxed">
+        Klick drauf. Klick durch. Du merkst den Unterschied zu Figma-Links sofort. Jeder dieser Prototypen hat seinen Gründern Investoren, Kunden oder beides eingebracht — bevor eine Zeile Produktions-Code geschrieben wurde.
+      </p>
+    </div>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+      <!-- Prototype 1: PILLO -->
+      <a href="#" data-placeholder="pillo-url"
+         class="group block bg-white/5 rounded-3xl overflow-hidden ring-1 ring-white/10 hover:ring-nxt-orange transition">
+        <div class="aspect-[4/5] bg-gradient-to-br from-nxt-green-2 to-nxt-deep relative">
+          <div class="absolute inset-6 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+            <span class="font-black text-4xl tracking-tight">PILLO</span>
+          </div>
+          <span class="absolute top-4 right-4 chip bg-nxt-orange text-nxt-deep">Live</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-extrabold">PILLO</h3>
+          <p class="mt-2 text-sm text-white/70">Klickbarer Prototype, der den Gründern die ersten Pilotkunden gewonnen hat.</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-nxt-orange text-sm font-semibold">
+            Prototype öffnen <span aria-hidden>↗</span>
+          </span>
+        </div>
+      </a>
+      <!-- Prototype 2: Vetain -->
+      <a href="#" data-placeholder="vetain-url"
+         class="group block bg-white/5 rounded-3xl overflow-hidden ring-1 ring-white/10 hover:ring-nxt-orange transition">
+        <div class="aspect-[4/5] bg-gradient-to-br from-nxt-orange/80 to-nxt-orange-2 relative">
+          <div class="absolute inset-6 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+            <span class="font-black text-4xl tracking-tight">Vetain</span>
+          </div>
+          <span class="absolute top-4 right-4 chip bg-white/90 text-nxt-deep">Live</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-extrabold">Vetain</h3>
+          <p class="mt-2 text-sm text-white/70">Aus Konzept zu Investor-Termin in drei Wochen. Die App-Idee, die wirklich geflogen ist.</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-nxt-orange text-sm font-semibold">
+            Prototype öffnen <span aria-hidden>↗</span>
+          </span>
+        </div>
+      </a>
+      <!-- Prototype 3: Soulmates -->
+      <a href="#" data-placeholder="soulmates-url"
+         class="group block bg-white/5 rounded-3xl overflow-hidden ring-1 ring-white/10 hover:ring-nxt-orange transition">
+        <div class="aspect-[4/5] bg-gradient-to-br from-nxt-deep to-black relative">
+          <div class="absolute inset-6 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center">
+            <span class="font-black text-3xl tracking-tight">Soulmates</span>
+          </div>
+          <span class="absolute top-4 right-4 chip bg-nxt-orange text-nxt-deep">Live</span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-extrabold">Soulmates</h3>
+          <p class="mt-2 text-sm text-white/70">Gisela Mühlhöfers App — von der ersten Skizze bis zum pitch-ready Prototype.</p>
+          <span class="mt-4 inline-flex items-center gap-1 text-nxt-orange text-sm font-semibold">
+            Prototype öffnen <span aria-hidden>↗</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <p class="mt-6 text-sm text-white/50">
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-nxt-orange mr-2"></span>
+      Prototyp-Links werden ergänzt, sobald die Live-URLs freigegeben sind.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §10 · CASESTUDIES GRID                         -->
+<!-- ============================================= -->
+<section class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">
+        Casestudies
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+        So könnte deine App aussehen.
+      </h2>
+      <p class="mt-6 text-lg text-nxt-deep/70 leading-relaxed">
+        Wir bauen Apps, die nicht nur gut aussehen — sondern funktionieren, skalieren und bei Nutzern wirklich ankommen.
+      </p>
+    </div>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Case 1: Club Pillar -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-deep to-nxt-green flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Club Pillar</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">Club Pillar</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Die erste Luxus-Dating-App für einen nüchternen Lebensstil.</p>
+        </div>
+      </a>
+      <!-- Case 2: Mental Rehapp -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-green-2 to-nxt-green flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Mental Rehapp</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">Mental Rehapp</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Digitale Unterstützung für ganzheitliche Rehabilitation.</p>
+        </div>
+      </a>
+      <!-- Case 3: KTM Orange Blood -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-orange to-nxt-orange-2 flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Orange Blood</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">KTM Orange Blood</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Fan-Plattform mit Ride-Organisation, Social-Feed und Bewerbung.</p>
+        </div>
+      </a>
+      <!-- Case 4: Azqira -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-green to-nxt-deep flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Azqira</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">Azqira</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Digitale Immobilien-Investments mit NFT-Technologie.</p>
+        </div>
+      </a>
+      <!-- Case 5: Playvent -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-deep to-nxt-green-2 flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Playvent</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">Playvent</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Die Sportturnier-App mit Live-Updates.</p>
+        </div>
+      </a>
+      <!-- Case 6: Universität Hamburg -->
+      <a href="/app-kontakt" class="group bg-white rounded-3xl overflow-hidden border border-nxt-deep/5 shadow-sm hover:shadow-nxt transition">
+        <div class="aspect-[4/3] bg-gradient-to-br from-nxt-green to-nxt-green-2 flex items-center justify-center">
+          <span class="text-white font-black text-3xl tracking-tight">Uni HH</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-extrabold text-nxt-deep">Universität Hamburg</h3>
+          <p class="mt-1 text-sm text-nxt-deep/60">Erfassung von Userdaten für nachhaltige Stadtentwicklung.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §11 · TESTIMONIAL SLIDER                       -->
+<!-- ============================================= -->
+<section class="bg-nxt-deep py-24 md:py-32 text-white">
+  <div class="mx-auto max-w-5xl px-6 lg:px-8"
+       x-data="{ active: 0, slides: [0,1,2,3,4] }">
+    <div class="max-w-3xl">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Gründer-Stimmen
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Weil echte Ergebnisse gehört werden sollten.
+      </h2>
+    </div>
+
+    <div class="mt-12 relative">
+      <!-- Slide 1 -->
+      <template x-for="i in slides" :key="i">
+        <div x-show="active === i" x-transition class="bg-white/5 ring-1 ring-white/10 rounded-3xl p-8 md:p-12">
+          <svg class="h-8 w-8 text-nxt-orange" viewBox="0 0 32 32" fill="currentColor" aria-hidden>
+            <path d="M10 8H6a4 4 0 00-4 4v12h12V12h-4l2-4h-2zm16 0h-4a4 4 0 00-4 4v12h12V12h-4l2-4h-2z"/>
+          </svg>
+          <p class="mt-6 text-xl md:text-2xl leading-relaxed text-white/90">
+            <span x-text="[
+              '[Testimonial Platzhalter 1 — Arthur liefert echten O-Ton · Name · Firma · Rolle · Prototype-Link-Reference]',
+              '[Testimonial Platzhalter 2 — hier kommt ein Zitat über die Geschwindigkeit und Klarheit, die der Sprint geliefert hat.]',
+              '[Testimonial Platzhalter 3 — hier kommt ein Zitat über Investor-Ergebnis nach dem Founder Sprint.]',
+              '[Testimonial Platzhalter 4 — hier kommt ein Zitat über die Zusammenarbeit als Partner statt Dienstleister.]',
+              '[Testimonial Platzhalter 5 — hier kommt ein Zitat über Pilotkunden-Gewinnung ohne fertigen MVP.]'
+            ][i]"></span>
+          </p>
+          <footer class="mt-8 flex items-center gap-4">
+            <div class="h-12 w-12 rounded-full bg-nxt-orange/30 flex items-center justify-center font-black text-nxt-orange">
+              <span x-text="['A','B','C','D','E'][i]"></span>
+            </div>
+            <div>
+              <p class="font-bold" x-text="'[Name Platzhalter ' + (i+1) + ']'"></p>
+              <p class="text-sm text-white/60" x-text="'[Rolle · Firma ' + (i+1) + ']'"></p>
+            </div>
+          </footer>
+        </div>
+      </template>
+
+      <!-- Controls -->
+      <div class="mt-8 flex items-center justify-between">
+        <div class="flex gap-2">
+          <template x-for="i in slides" :key="i">
+            <button @click="active = i"
+                    :class="active === i ? 'bg-nxt-orange w-8' : 'bg-white/20 w-2 hover:bg-white/40'"
+                    class="h-2 rounded-full transition-all"
+                    :aria-label="'Slide ' + (i+1)"></button>
+          </template>
+        </div>
+        <div class="flex gap-2">
+          <button @click="active = (active - 1 + slides.length) % slides.length"
+                  class="h-10 w-10 rounded-full border border-white/20 hover:border-white/60 flex items-center justify-center text-white transition"
+                  aria-label="Vorheriger Slide">←</button>
+          <button @click="active = (active + 1) % slides.length"
+                  class="h-10 w-10 rounded-full border border-white/20 hover:border-white/60 flex items-center justify-center text-white transition"
+                  aria-label="Nächster Slide">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §12 · FOUNDER & TEAM                           -->
+<!-- ============================================= -->
+<section id="team" class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+
+    <!-- Founder: Clemens -->
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5">
+        <div class="aspect-[4/5] rounded-3xl bg-gradient-to-br from-nxt-green to-nxt-deep flex items-center justify-center text-white/70 font-black text-7xl tracking-tight shadow-nxt">
+          CK
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <span class="chip bg-nxt-orange/10 text-nxt-orange ring-1 ring-nxt-orange/20">
+          Wer dich führt
+        </span>
+        <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+          Clemens Kauschke.<br/><span class="text-nxt-orange">Dein Sparringspartner für 21 Tage.</span>
+        </h2>
+        <p class="mt-6 text-lg text-nxt-deep/75 leading-relaxed">
+          Gründer von NXT YOU. Hat über 50 Software- und App-Projekte begleitet — darunter Vetain, Soulmates, Dachcontrol, Fireplan — und parallel eigene Produkte aufgebaut, in denen wir nach genau denselben Prinzipien arbeiten.
+        </p>
+        <blockquote class="mt-6 border-l-4 border-nxt-orange pl-5 text-nxt-deep/80 italic">
+          „Ich habe gesehen, wie Gründer mit überschaubarem Budget groß geworden sind. Und wie andere €100k in den Sand gesetzt haben. Der Unterschied war nie die Idee — es war die Reihenfolge."
+        </blockquote>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://www.linkedin.com/in/clemenskauschke/" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-2 rounded-full border border-nxt-deep/15 hover:border-nxt-deep/40 px-5 py-2 text-sm font-semibold text-nxt-deep transition">
+            LinkedIn →
+          </a>
+          <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">50+ Projekte</span>
+          <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">10k+ Users</span>
+          <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">400-Day-Week-Motor</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Team Grid -->
+    <div class="mt-24">
+      <h3 class="text-2xl md:text-3xl font-black tracking-tight text-nxt-deep">Das Team hinter dem Sprint</h3>
+      <p class="mt-2 text-nxt-deep/60 max-w-2xl">Strategen, Designer, Developer — nicht als Dienstleister, sondern als Partner.</p>
+
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <!-- Team member card template -->
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">EK</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Emre Keskin</p>
+          <p class="text-xs text-nxt-deep/60">Design Lead</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">NS</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Niklas Stier</p>
+          <p class="text-xs text-nxt-deep/60">Project Manager</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">JF</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Julian Förster</p>
+          <p class="text-xs text-nxt-deep/60">COO</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">JB</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Jose Brito</p>
+          <p class="text-xs text-nxt-deep/60">Growth Expert</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">YM</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Yuriy Medvedev</p>
+          <p class="text-xs text-nxt-deep/60">Web Developer</p>
+        </div>
+        <div class="bg-white rounded-2xl p-4 border border-nxt-deep/5 hover:shadow-sm transition text-center">
+          <div class="mx-auto h-16 w-16 rounded-full bg-nxt-green/10 flex items-center justify-center font-black text-nxt-green">AG</div>
+          <p class="mt-3 font-bold text-nxt-deep text-sm">Arthur Grabowski</p>
+          <p class="text-xs text-nxt-deep/60">CMO</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §13 · QUALIFIER                                -->
+<!-- ============================================= -->
+<section class="bg-nxt-green py-24 md:py-32 text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid-overlay opacity-25 pointer-events-none"></div>
+  <div class="relative mx-auto max-w-4xl px-6 lg:px-8">
+    <div class="text-center">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Ehrlich gesagt
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Ist der Founder Sprint für dich?
+      </h2>
+      <p class="mt-6 text-lg text-white/80 leading-relaxed">
+        Was wir dir jetzt zeigen, funktioniert nicht für jeden. Lass uns kurz klar machen, ob du zur richtigen Gruppe gehörst.
+      </p>
+    </div>
+
+    <div class="mt-12 bg-white/5 rounded-3xl p-8 md:p-10 ring-1 ring-white/10">
+      <p class="font-bold text-lg text-nxt-orange uppercase tracking-wider text-sm">Der Sprint ist für dich, wenn:</p>
+      <ul class="mt-6 space-y-4 text-lg">
+        <li class="flex gap-4 items-start">
+          <span class="h-7 w-7 rounded-full bg-nxt-orange/20 flex items-center justify-center text-nxt-orange font-black shrink-0 mt-0.5">✓</span>
+          <span>Du eine klare Idee für eine App, Software oder ein KI-Tool hast — aber nicht selbst programmieren kannst oder willst.</span>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="h-7 w-7 rounded-full bg-nxt-orange/20 flex items-center justify-center text-nxt-orange font-black shrink-0 mt-0.5">✓</span>
+          <span>Du bereit bist, €5.000–15.000 in den richtigen ersten Schritt zu investieren — aber nicht alles auf einen MVP setzt, bevor klar ist, dass der Markt will.</span>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="h-7 w-7 rounded-full bg-nxt-orange/20 flex items-center justify-center text-nxt-orange font-black shrink-0 mt-0.5">✓</span>
+          <span>Du erst validieren willst, bevor du in die Vollentwicklung gehst.</span>
+        </li>
+        <li class="flex gap-4 items-start">
+          <span class="h-7 w-7 rounded-full bg-nxt-orange/20 flex items-center justify-center text-nxt-orange font-black shrink-0 mt-0.5">✓</span>
+          <span>Du ein solides, greifbares Produkt willst — kein Unicorn-Lotterielos, sondern etwas, auf das du stolz sein kannst.</span>
+        </li>
+      </ul>
+
+      <p class="mt-10 text-sm text-white/60 border-t border-white/10 pt-6">
+        Wenn du dich wiedererkennst — dann bist du genau richtig. Wenn nicht, ist das hier nichts für dich. Und das ist völlig okay.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §14 · GARANTIE                                 -->
+<!-- ============================================= -->
+<section class="bg-nxt-cream py-20">
+  <div class="mx-auto max-w-4xl px-6 lg:px-8">
+    <div class="bg-white rounded-3xl p-8 md:p-12 border border-nxt-deep/5 shadow-sm grid md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-3 flex justify-center">
+        <div class="h-32 w-32 rounded-full bg-nxt-orange/10 flex items-center justify-center ring-4 ring-nxt-orange/20">
+          <svg viewBox="0 0 24 24" class="h-16 w-16 text-nxt-orange" fill="currentColor" aria-hidden>
+            <path d="M12 1l3 5 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"/>
+          </svg>
+        </div>
+      </div>
+      <div class="md:col-span-9">
+        <p class="text-sm uppercase tracking-widest font-semibold text-nxt-orange">Value-Over-Price-Garantie</p>
+        <h3 class="mt-3 text-2xl md:text-3xl font-black text-nxt-deep leading-tight">
+          Wenn du nach Phase 1 nicht überzeugt bist, bekommst du dein Geld zurück. 100 %.
+        </h3>
+        <p class="mt-4 text-nxt-deep/70">
+          Wir stehen zu unserem Ergebnis. Keine Vertragsklauseln, keine Hürden — nur ehrliche Arbeit, die sich für dich lohnt.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §15 · FINAL CTA                                -->
+<!-- ============================================= -->
+<section class="bg-nxt-deep py-24 md:py-32 text-white relative overflow-hidden">
+  <div class="absolute inset-0 hero-grid-overlay opacity-25 pointer-events-none"></div>
+  <div class="relative mx-auto max-w-5xl px-6 lg:px-8 grid lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-4 flex justify-center">
+      <div class="aspect-square w-full max-w-xs rounded-3xl bg-gradient-to-br from-nxt-green-2 to-nxt-deep flex items-center justify-center font-black text-5xl text-white/70 ring-1 ring-white/10 shadow-nxt">
+        CK
+      </div>
+    </div>
+    <div class="lg:col-span-8 text-center lg:text-left">
+      <span class="chip bg-nxt-orange/20 text-nxt-orange ring-1 ring-nxt-orange/30">
+        Dein nächster Schritt
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight leading-tight">
+        Buch dir jetzt dein <span class="text-nxt-orange">kostenloses Strategie-Gespräch.</span>
+      </h2>
+      <p class="mt-6 text-lg text-white/80 leading-relaxed">
+        Kostenlos. Unverbindlich. Der produktivste Call, den du diese Woche haben wirst.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 lg:justify-start justify-center">
+        <a href="/app-kontakt"
+           class="inline-flex items-center justify-center gap-2 rounded-full bg-nxt-orange hover:bg-nxt-orange-2 px-8 py-4 text-base font-bold text-nxt-deep shadow-nxt transition">
+          Strategiegespräch buchen
+          <span aria-hidden>→</span>
+        </a>
+        <a href="tel:+4917680649500"
+           class="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 hover:border-white/60 px-8 py-4 text-base font-semibold text-white transition">
+          +49 176 80649500
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-white/50 max-w-xl">
+        Wenn wir gemeinsam merken, dass der Sprint nicht zu dir passt — sagen wir dir das ehrlich. Dann sparen wir uns beide die Zeit.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §16 · FAQ                                      -->
+<!-- ============================================= -->
+<section id="faq" class="bg-nxt-cream py-24 md:py-32">
+  <div class="mx-auto max-w-3xl px-6 lg:px-8">
+    <div class="text-center">
+      <span class="chip bg-nxt-green/10 text-nxt-green ring-1 ring-nxt-green/20">
+        FAQ
+      </span>
+      <h2 class="mt-6 text-4xl md:text-5xl font-black tracking-tight text-nxt-deep leading-tight">
+        Häufig gestellte Fragen.
+      </h2>
+    </div>
+
+    <div class="mt-12 space-y-3" x-data="{ open: 0 }">
+      <!-- FAQ 1 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Was macht ihr konkret im Founder Sprint?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Drei Wochen, vier Phasen, unser Team. Wir starten mit einem Market-Fit-Workshop (Tag 1), designen dann deine Key-Screens (Woche 1), bauen einen voll interaktiven Prototype (Woche 2) und gehen mit Landingpage + Waitlist + Analytics live (Woche 3). Am Tag 21 hast du alles, um bei Investoren, Partnern und ersten Kunden zu überzeugen.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Was passiert nach den 21 Tagen?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Du hast drei Wege: 1) Weitergehen zur MVP-Entwicklung mit unserem fertigen Meilensteinplan. 2) Direkt Investoren ansprechen mit Prototype + Pitch-Deck. 3) Pilotkunden aus der Waitlist closen. Welcher Weg für dich passt, klären wir im abschließenden Check-In.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Warum nur €2.999 — wo ist der Haken?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Kein Haken. Der Fixpreis funktioniert, weil wir durch die AI-gestützte Discovery und unseren 400-Day-Week-Ansatz deutlich weniger Team-Stunden pro Projekt brauchen als eine klassische Agentur. Unser Geschäft ist der MVP-Build danach — deshalb darf der Sprint scharf kalkuliert sein.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Ich kann doch mit KI selber prototypen — warum €2.999?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Stimmt — aber ein Prototyp ist nur ein Fünftel des Deliverables. Du bekommst ein PRD, Brand Guidelines, Pitch-Deck, ICP-Doc, Landingpage, Waitlist, Analytics, Meilensteinplan und drei Check-Ins. Die Frage ist nicht, ob du es selbst kannst, sondern ob du dir die 3–6 Monate Lernkurve leisten willst, während die Konkurrenz launched.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Wie unterscheidet sich das von einem Accelerator oder FounderBlocks?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Accelerator sind Gruppenprogramme über Monate. Wir sind 1:1, drei Wochen, mit einem klaren Deliverable. Programme wie FounderBlocks zielen auf 6 Monate bis zum ersten Umsatz — wir machen den Schritt davor: Validierung und Prototyp, bevor überhaupt programmiert wird. Für viele Gründer ist das genau der Schritt, der davor fehlte.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Was brauche ich, um loszulegen?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Eine klare Idee für eine App, Software oder ein KI-Tool. Ein grobes Verständnis für deine Zielgruppe. 4–6 Stunden pro Woche, um uns in Workshops und Reviews zu begleiten. Mehr nicht. Den Rest machen wir.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 7 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Wie läuft die Zusammenarbeit ab — Remote oder vor Ort?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Wir arbeiten primär remote (Video-Workshops, gemeinsames Figma, Slack oder WhatsApp). Auf Wunsch kommt Tag 1 — der Market-Fit-Workshop — auch vor Ort in Berlin oder München. Alle Sessions werden aufgezeichnet und landen in deiner Content Library.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 8 -->
+      <details class="group bg-white rounded-2xl border border-nxt-deep/5 overflow-hidden">
+        <summary class="cursor-pointer list-none px-6 py-5 flex items-center justify-between font-bold text-nxt-deep">
+          <span>Was ist die Geld-zurück-Garantie?</span>
+          <span class="faq-caret text-nxt-orange text-2xl leading-none">+</span>
+        </summary>
+        <div class="px-6 pb-6 text-nxt-deep/75 leading-relaxed">
+          <p>Nach Phase 1 (dem Market-Fit-Workshop) entscheidest du, ob wir weitermachen. Wenn nicht — volle Rückerstattung, ohne Diskussion. Wir glauben, dass nur Gründer mit uns weitermachen sollten, die überzeugt sind. Alles andere hilft niemandem.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- §17 · FOOTER                                   -->
+<!-- ============================================= -->
+<footer class="bg-nxt-deep border-t border-nxt-line text-white/70">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16 grid md:grid-cols-4 gap-10">
+    <div class="md:col-span-2">
+      <div class="flex items-center gap-2 text-white font-black text-lg">
+        <span class="inline-flex h-8 w-8 rounded-full bg-nxt-orange items-center justify-center text-nxt-deep text-sm font-black">NY</span>
+        <span>NXT YOU</span>
+      </div>
+      <p class="mt-4 max-w-md">
+        NXT YOU ist ein Full-Service-Softwarepartner, der mit visionären Personen und Organisationen zusammenarbeitet, um deren Ideen durch Softwareprodukte in die Realität umzusetzen.
+      </p>
+      <p class="mt-4 text-sm">NXT YOU GmbH · Berlin &amp; München</p>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold uppercase text-xs tracking-widest">Wichtige Links</h4>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/impressum" class="hover:text-white">Impressum</a></li>
+        <li><a href="/datenschutz" class="hover:text-white">Datenschutz</a></li>
+        <li><a href="/app-kontakt" class="hover:text-white">Kontakt</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-white font-bold uppercase text-xs tracking-widest">Social</h4>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="https://www.instagram.com/nxtyou.de/" target="_blank" rel="noopener" class="hover:text-white">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@nxtyou" target="_blank" rel="noopener" class="hover:text-white">YouTube</a></li>
+        <li><a href="https://www.linkedin.com/company/nxt-you/" target="_blank" rel="noopener" class="hover:text-white">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-nxt-line py-6 text-center text-xs text-white/40">
+    © 2026 NXT YOU GmbH. Alle Rechte vorbehalten.
+  </div>
+</footer>
+
+</body>
+</html>
